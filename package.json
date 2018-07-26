@@ -1,0 +1,26 @@
+{
+    "dependencies": {
+        "cors": "^2.8.4",
+        "express": "^4.16.3",
+        "mongoose": "^5.2.5"
+    },
+    "scripts": {
+        "start": "node server.js",
+        "dev": "nodemon server.js"
+    },
+    "name": "api",
+    "version": "1.0.0",
+    "main": "server.js",
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/thethrustguru/thethrustguru_apiService.git"
+    },
+    "author": "Everistus Olumese <everistusolumese@gmail.com>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/thethrustguru/thethrustguru_apiService/issues"
+    },
+    "homepage": "https://github.com/thethrustguru/thethrustguru_apiService#readme",
+    "description": ""
+}
