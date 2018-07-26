@@ -6,7 +6,7 @@ let RecipeSchema = new mongoose.Schema({
     name: String,
     desc: String,
     items: [{
-        itemid: { type: mongoose.Schema.Types.ObjectId, ref: 'Items' },
+        id: { type: mongoose.Schema.Types.ObjectId, ref: 'Items' },
         quantity: Number,
         unit: String,
     }]
