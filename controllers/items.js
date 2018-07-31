@@ -18,7 +18,7 @@ module.exports = {
         console.log(req.body.total_price);
         itemsModel.create(req.body)
             .then(result => res.json({ success: true, message: 'Successfully created food item' }))
-            .catch(err => res.json({ success: false, message: 'An error occurred. Kindly try again later' }))
+            .catch(err => res.json({ success: false, message: err.message' }))
     },
     Update: (req, res) => {
         req.body.total_price = Number(req.body.price) * Number(req.body.count);
