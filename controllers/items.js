@@ -1,4 +1,6 @@
 const itemsModel = require('../models/items');
+const Logger = require('../models/logger');
+const SchemaTypes = require('mongoose').SchemaTypes;
 
 module.exports = {
     index: (req, res) => {
@@ -15,20 +17,52 @@ module.exports = {
 
     create: (req, res) => {
         req.body.total_price = Number(req.body.price) * Number(req.body.count);
-        console.log(req.body.total_price);
+
         itemsModel.create(req.body)
-            .then(result => res.json({ success: true, message: 'Successfully created food item' }))
+            .then(result => {
+                Logger.create({
+                        userId: SchemaTypes.ObjectId(req.user._id),
+                        action: 'Created new food item ' + result._id
+                    })
+                    .then(result => {
+
+                        res.json({ success: true, message: 'Successfully created food item', id: result._id })
+                    }).catch(err => res.json(err));
+
+            })
             .catch(err => res.json({ success: false, message: 'An error occurred. Kindly try again later' }))
     },
     Update: (req, res) => {
         req.body.total_price = Number(req.body.price) * Number(req.body.count);
         itemsModel.findByIdAndUpdate(req.params.id, req.body)
-            .then(result => res.json({ success: true, message: 'Successfully updated food item' }))
+            .then(result => {
+                Logger.create({
+                        userId: SchemaTypes.ObjectId(req.user._id),
+                        action: 'Upddated food item ' + result._id
+                    })
+                    .then(result => {
+
+                        res.json({ success: true, message: 'Successfully updated food item' })
+                    }).catch(err => res.json(err));
+
+
+            })
             .catch(err => res.json({ success: false, message: 'An error occurred. Kindly try again later' }))
     },
     delete: (req, res) => {
         itemsModel.findByIdAndRemove(req.params.id)
-            .then(result => res.json({ success: true, message: 'Successfully deleted food item' }))
+            .then(result => {
+                Logger.create({
+                        userId: SchemaTypes.ObjectId(req.user._id),
+                        action: 'Deleted food item ' + result._id
+                    })
+                    .then(result => {
+
+                        res.json({ success: true, message: 'Successfully deleted food item' })
+                    }).catch(err => res.json(err));
+
+
+            })
             .catch(err => res.json({ success: false, message: 'An error occurred. Kindly try again later' }))
     },
 }
