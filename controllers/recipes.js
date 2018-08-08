@@ -34,7 +34,7 @@ module.exports = {
             .then(recipe => {
                 // console.log(recipe)
                 Logger.create({
-                        userId: SchemaTypes.ObjectId(req.user._id),
+                        userId: req.user._id,
                         action: 'Created new recipes ' + recipe._id
                     })
                     .then(result => {
@@ -48,7 +48,7 @@ module.exports = {
         Recipes.findByIdAndUpdate(req.params.id, req.body)
             .then(result => {
                 Logger.create({
-                        userId: SchemaTypes.ObjectId(req.user._id),
+                        userId: req.user._id,
                         action: 'Updated recipes ' + result._id
                     })
                     .then(result => {
@@ -62,7 +62,7 @@ module.exports = {
         Recipes.findByIdAndRemove(req.params.id)
             .then(result => {
                 Logger.create({
-                        userId: SchemaTypes.ObjectId(req.user._id),
+                        userId: req.user._id,
                         action: 'Deleted recipes ' + result._id
                     })
                     .then(result => {

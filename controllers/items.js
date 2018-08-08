@@ -21,7 +21,7 @@ module.exports = {
         itemsModel.create(req.body)
             .then(result => {
                 Logger.create({
-                        userId: SchemaTypes.ObjectId(req.user._id),
+                        userId: req.user._id,
                         action: 'Created new food item ' + result._id
                     })
                     .then(result => {
@@ -37,7 +37,7 @@ module.exports = {
         itemsModel.findByIdAndUpdate(req.params.id, req.body)
             .then(result => {
                 Logger.create({
-                        userId: SchemaTypes.ObjectId(req.user._id),
+                        userId: req.user._id,
                         action: 'Upddated food item ' + result._id
                     })
                     .then(result => {
@@ -53,7 +53,7 @@ module.exports = {
         itemsModel.findByIdAndRemove(req.params.id)
             .then(result => {
                 Logger.create({
-                        userId: SchemaTypes.ObjectId(req.user._id),
+                        userId: req.user._id,
                         action: 'Deleted food item ' + result._id
                     })
                     .then(result => {
