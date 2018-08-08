@@ -11,6 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 
 const recipesRoutes = require('./routes/recipes');
 const itemsRoutes = require('./routes/items');
+const foodsRoutes = require('./routes/food');
 const userRoutes = require('./routes/user.routes');
 const logRoutes = require('./routes/logger');
 require('./config/passport')(passport);
@@ -18,6 +19,7 @@ require('./config/passport')(passport);
 app.use('/user', userRoutes);
 app.use('/recipes', recipesRoutes);
 app.use('/items', itemsRoutes);
+app.use('/foods', foodsRoutes);
 app.use('/logs', logRoutes);
 //connect to MongoDB
 const { user, pass } = require('./db');
