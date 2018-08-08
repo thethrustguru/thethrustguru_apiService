@@ -56,6 +56,8 @@
                     }
                 })
 
+            } else {
+                res.json({ success: false, message: "Login information is incorrect" })
             }
 
         }).catch(err => {
